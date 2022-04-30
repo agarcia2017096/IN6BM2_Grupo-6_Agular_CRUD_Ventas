@@ -1,0 +1,376 @@
+<!--ALEJANDRO GARCIA-->
+
+<div class="row justify-content-center">
+  <div class="col-12 ">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <i class="bi bi-building"></i>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center text-white" id="navbarNav">
+          <ul class="nav navbar-nav pull-xs-center">
+
+            <li class="nav-item mx-5 ">
+              <a id="dd" class="nav-link text-white" routerLink="/" routerLinkActive="active">Inicio <i
+                  class="bi bi-clipboard-check"></i></a>
+            </li>
+            <li class="nav-item mx-5">
+              <a id="dd" class="nav-link text-white" routerLink="/login" routerLinkActive="active">Login <i
+                  class="bi bi-play"></i></a>
+            </li>
+            <li class="nav-item mx-5">
+              <a id="dd" class="nav-link text-white" routerLink="/registro" routerLinkActive="active">Registrarse <i
+                  class="bi bi-check2-all"></i></a>
+            </li>
+
+
+            <div class="dropdown" style="position: relative; z-index: 3" *ngIf="_usuarioService.obtenerIdentidad()">
+              <button style="color: whitesmoke;" class="btn dropdown-toggle dd2" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                {{ _usuarioService.obtenerIdentidad().nombre }} <i class="bi bi-person-badge"></i>
+              </button>
+              <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
+
+                <div style="background-color: #222830 ">
+                  <a class="dropdown-item"  style="background-color: #222830">
+                    <img src="assets/images/iconoUsuario.png" style="width: 120px;height: 120px">
+                  </a>
+                </div>
+
+                <a class="dropdown-item" >
+                  {{ _usuarioService.obtenerIdentidad().nombre }}
+                </a>
+
+                <div>
+                  <hr class="dropdown-divider">
+                </div>
+
+                <div class="dropdown-item" style="background-color: #E74C3C">
+                  <a routerLink="/inicio" routerLinkActive="active" class="dropdown-item"
+                    style="background-color: #E74C3C">↤ SALIR</a>
+                </div>
+              </div>
+            </div>
+
+
+          </ul>
+        </div>
+      </div>
+
+    </nav>
+
+  </div>
+</div>
+
+
+<section id="hero">
+  <div class="hero-container">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
+      <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="2000">
+            <img src="/assets/images/iconDash3.jpg " class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5 id="subTituloCarrusel">Organización y almacenamiento</h5>
+
+              <div class="wrapper">
+                <p class="title">Gestión de información actualizada</p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img src="/assets/images/iconDash2.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5 id="subTituloCarrusel">Profesionalidad y calidad</h5>
+
+              <div class="wrapper">
+                <p class="title">Información detallada y específica</p>
+              </div>
+
+            </div>
+          </div>
+          <div class="carousel-item " data-bs-interval="2000">
+            <img src="/assets/images/iconDash.jpg" class="d-block w-100" alt="imagen">
+            <div class="carousel-caption d-none d-md-block">
+
+              <h5 id="subTituloCarrusel">Empresas del usuario</h5>
+
+              <div class="wrapper">
+                <p class="title">Control e información detallada de la empresa</p>
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+<hr>
+
+<section class="dark">
+  <div class="container py-4">
+    <a id="botonEntidad"  class="btn btn-light btn-block" data-bs-toggle="modal" data-bs-target="#addModal">
+      <h6>
+        <i class="bi bi-plus-circle-dotted"></i> Agregar empresa
+      </h6>
+    </a>
+    <!-- Modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #E5E7E9">
+          <div class="modal-header" style="background-color: #222830">
+            <h5 class="modal-title" id="exampleModalLabel" style="color: white"> <i class="bi bi-sliders2"></i> Agregar
+              datos de la empresa</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <form method="POST" action="${pageContext.request.contextPath}/ServletSalonController?accion=insertar"
+            class="was-validated">
+            <div class="modal-body">
+
+              <div class="form-group">
+                <label for="nombreEmpresa"> Nombre de la empresa: </label>
+                <input type="text" class="form-control" id="inputNombre" name="nombre" #nombre="ngModel"
+                  [(ngModel)]="empresasModelPost.nombre" required>
+              </div>
+
+              <div class="form-group">
+                <label for="tipoEmpresa"> Tipo de empresa: </label><br>
+                <select id="tipoEmpresa" style="width:100%; height: 2rem;" name="tipoEmpresa" #tipoEmpresa="ngModel"
+                  [(ngModel)]="empresasModelPost.tipoEmpresa">
+                  <option value="Restaurante">Restaurante</option>
+                  <option value="Ventas de tecnología">Venta de tecnología</option>
+                  <option value="Librería">Librería</option>
+                  <option value="Deporte">Deporte</option>
+                  <option value="Supermercado">Supermercado</option>
+                  <option value="Cine">Cine</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="nombreEmpresa"> Password de la empresa: </label>
+                <input type="password" class="form-control" id="inputPassword" name="password" #password="ngModel"
+                  [(ngModel)]="empresasModelPost.password" required>
+              </div>
+              <div class="form-group">
+                <label for="nombreEmpresa"> Usuario: </label>
+                <input type="text" class="form-control" id="inputUsuario" name="usuario" #usuario="ngModel"
+                  [(ngModel)]="empresasModelPost.usuario" required>
+              </div>
+            </div>
+
+            <div class="modal-footer" style="background-color: #222830">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="sumbit" class="btn btn-success" (click)="postEmpresas()"
+                data-dismiss="createLabel" data-bs-dismiss="modal">Guardar</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+    <h1 class="h1 text-center" id="pageHeaderTitle">EMPRESAS ACTUALES</h1>
+
+        <article *ngFor="let empresas of empresasModelGet; let i = index" class="postcard dark" [ngClass]="coloresDinamicos[i]">
+          <a class="postcard__img_link">
+            <img class="postcard__img" src="/assets/images/iconCard2.jpg" alt="Image Title" />
+          </a>
+          <div class="postcard__text">
+            <h1 class="postcard__title blue"><a> {{empresas.nombre}}</a></h1>
+            <div class="postcard__subtitle small">
+              <time datetime="2022-05-25 12:00:00">
+                <i class="fas fa-calendar-alt mr-2"></i> 🠮 2022
+              </time>
+            </div>
+            <div class="postcard__bar"></div>
+            <div class="postcard__preview-txt">
+              <i class="bi bi-building"></i> Tipo empresa: {{empresas.tipoEmpresa}}<br><br>
+            </div>
+            <ul class="postcard__tagbox">
+              <li class="tag__item play red">
+
+                <button type="button" class="btn text-light" (click)="deleteEmpresa(empresas._id)"><i
+                    class="bi bi-trash3"></i> Eliminar</button>
+              </li>
+              
+              <li class="tag__item play orange">
+                <!-- BOTON EDITAR -->
+                
+                <!-- <a type="button" class="card-link" ><i class="bi bi-pencil-square"></i> Modificar</a> -->
+                <button type="button" class="btn text-light"  data-bs-toggle="modal" data-bs-target="#modalEditarEmpresa" (click)="getEmpresaId(empresas._id)"><i class="bi bi-pencil-square"></i> Editar</button>
+              </li>
+
+              <li class="tag__item play blue">
+                <button type="button" class="btn text-light"  [routerLink]="['/admin/dash-board', empresas._id]"> ⮕ Sucursales
+                </button>
+              </li>
+
+            </ul>
+          </div>
+        </article>
+
+  </div>
+
+</section>
+<hr>
+
+<section id="contact" class="contact justify-content-center alight-item center" style="background-color: #EAF2F8;">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Ubicación Ciudad de Guatemala</h2>
+      <p>Visualización del mapa para la ubicación de las sucursales y así tener una mejor orientación...</p>
+    </div>
+  </div>
+
+  <div style="background-image: linear-gradient(to bottom, #F39C12  , #CF6714);height: 2vh;"></div>
+
+  <div style="background-color:#CF6714;">
+    <div class="mapouter col-12">
+      <div class="gmap_canvas">
+        <iframe width="100%" height="406" id="gmap_canvas"
+          src="https://maps.google.com/maps?q=Ciudad%20de%20Guatemala%20&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a
+          href="https://putlocker-is.org"></a><br>
+        <style>
+          .mapouter {
+            position: relative;
+            text-align: right;
+            height: 406px;
+            width: 100%;
+          }
+        </style><a href="https://www.embedgooglemap.net">google map plugin html</a>
+        <style>
+          .gmap_canvas {
+            overflow: hidden;
+            background: none !important;
+            height: 406px;
+            width: 100%;
+          }
+        </style>
+      </div>
+    </div>
+  </div>
+
+  <div style="  background-image: linear-gradient(to top, #F39C12  , #CF6714);height: 2vh;"></div>
+
+  <hr>
+
+</section>
+
+
+
+<section style=" background-image: linear-gradient(to left, #222830  , #003049, #222830)">
+  <div class="row justify-content-center text-center mb-5">
+    <div class="col-md-5" data-aos="fade-up">
+      <h2 class="section-heading">Servicios y desarrollo</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="">
+      <div class="feature-1 text-center">
+        <div class="wrap-icon icon-1">
+          <i class="bi bi-people"></i>
+        </div>
+        <h3 class="mb-3" style="color:#F1E8B2 ">Profesionalidad</h3>
+        <p>Equipo de trabajo eficiente y productivo.</p>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="feature-1 text-center">
+        <div class="wrap-icon icon-1">
+          <i class="bi bi-brightness-high"></i>
+        </div>
+        <h3 class="mb-3" style="color:#F1E8B2 ">Ingenio</h3>
+        <p>Diseño dinámico y organización concreta. </p>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+      <div class="feature-1 text-center">
+        <div class="wrap-icon icon-1">
+          <i class="bi bi-bar-chart"></i>
+        </div>
+        <h3 class="mb-3" style="color:#F1E8B2 ">Información</h3>
+        <p>Majeno y almacenamiento de datos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<hr>
+
+
+<!-- MODAL EDITAR -->
+<div class="modal fade" id="modalEditarEmpresa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background-color: #E5E7E9">
+      <div class="modal-header" style="background-color: #222830">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: white"> <i class="bi bi-sliders2"></i> Editar
+          datos de la empresa</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <form method="POST" action="${pageContext.request.contextPath}/ServletSalonController?accion=insertar"
+        class="was-validated">
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label for="nombreEmpresa"> Nombre de la empresa: </label>
+            <input type="text" class="form-control" id="inputNombre" name="nombre" #nombre="ngModel"
+              [(ngModel)]="empresaModelId.nombre" required>
+          </div>
+
+          <div class="form-group">
+            <label for="tipoEmpresa"> Tipo de empresa: </label><br>
+            <select id="tipoEmpresa" style="width:100%; height: 2rem;" name="tipoEmpresa" #tipoEmpresa="ngModel"
+              [(ngModel)]="empresaModelId.tipoEmpresa" required>
+              <option value="Restaurante">Restaurante</option>
+              <option value="Ventas de tecnología">Venta de tecnología</option>
+              <option value="Librería">Librería</option>
+              <option value="Deporte">Deporte</option>
+              <option value="Supermercado">Supermercado</option>
+              <option value="Cine">Cine</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="nombreEmpresa"> Usuario: </label>
+            <input type="text" class="form-control" id="inputUsuario" name="usuario" #usuario="ngModel"
+              [(ngModel)]="empresaModelId.usuario" required>
+          </div>
+        </div>
+
+        <div class="modal-footer" style="background-color: #222830">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="sumbit" class="btn btn-success" (click)="putEmpresa()"
+            data-dismiss="createLabel" data-bs-dismiss="modal">Guardar</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+<!-- FIN MODAL EDITAR -->
+
+<app-footer></app-footer>
+
+<router-outlet></router-outlet>

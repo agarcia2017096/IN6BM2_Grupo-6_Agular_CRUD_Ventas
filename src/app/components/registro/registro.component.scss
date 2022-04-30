@@ -1,0 +1,57 @@
+body{
+  background-image: url("/assets/images/Edificios (1).png") !important;
+  margin: 0;
+  padding: 0;
+  z-index: -2;
+}
+
+.color-fondo{
+background: #0F2027 !important;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027) !important;  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #2C5364, #203A43, #0F2027),  !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.radio-card{
+border-radius: 50px !important;
+}
+
+.tamaño-icono{
+font-size: 80px !important;
+padding: 0px !important;
+margin: 0px !important;
+
+}
+
+.padre {
+position: relative !important;
+}
+
+
+.hijo {
+position: absolute !important;
+top: 50% !important;
+left: 50% !important;
+margin: -25px 0 0 -25px !important; /* aplicar a top y al margen izquierdo un valor negativo para completar el centrado del elemento hijo */
+}
+
+.img-fondo{
+width: 100%;
+height: 100%;
+margin:0%;
+padding:0;
+}
+
+#dd:hover{
+  background-color: #CF6714 !important;
+  font-size:18px !important;
+  border-radius: 5px;
+}
+
+#dd{
+  text-align: center !important;
+}
+
+#boton:hover{
+  background-color:#AFA586 !important;
+  color: black !important;
+}

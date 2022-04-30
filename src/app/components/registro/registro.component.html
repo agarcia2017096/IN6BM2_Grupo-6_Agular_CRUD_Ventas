@@ -1,0 +1,165 @@
+<!--DIEGO PATZAN / GABRIEL MELGAR-->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <i class="bi bi-building"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center text-white" id="navbarNav">
+      <ul class="nav navbar-nav pull-xs-center">
+        <li class="nav-item mx-5 ">
+          <a id="dd" class="nav-link text-white" routerLink="/login" routerLinkActive="active">Login <i class="bi bi-arrow-left-short"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!--
+ <div  style="margin-top:-60px" class="container p-5 position-absolute top-100 start-50 translate-middle color-fondo radio-card text-white text-center">
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <img src="/assets/images/Edificios (1).png" class="rounded mx-auto d-block img-fluid img-fondo" alt="...">
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="card-body ">
+          <div class="mb-4">
+            <i class="fas fa-user-circle fa-7x text-white tamaño-icono" ><i class="bi bi-person-bounding-box"></i></i>
+          </div>
+          <form class="was-validated">
+            <div class="mb-3">
+              <label for="nombreEmpresa"> Nombre de la empresa: </label>
+              <input type="text" class="form-control" id="inputNombre" name="nombre" #nombre="ngModel"
+                [(ngModel)]="empresasModelPost.nombre" required>
+            </div>
+            <div class="mb-3">
+              <label for="nombreEmpresa"> Usuario: </label>
+              <input type="text" class="form-control" id="inputUsuario" name="usuario" #usuario="ngModel"
+                [(ngModel)]="empresasModelPost.usuario" required>
+            </div>
+            <div class="mb-3">
+              <label for="nombreEmpresa"> Password de la empresa: </label>
+                <input type="password" class="form-control" id="inputPassword" name="password" #password="ngModel"
+                  [(ngModel)]="empresasModelPost.password" required>
+            </div>
+            <div class="form-group">
+              <label for="tipoEmpresa"> Tipo de empresa: </label><br>
+              <select id="tipoEmpresa" style="width:100%; height: 2rem;" name="tipoEmpresa" #tipoEmpresa="ngModel"
+                [(ngModel)]="empresasModelPost.tipoEmpresa">
+                <option value="Restaurante">Restaurante</option>
+                <option value="Ventas de tecnología">Venta de tecnología</option>
+                <option value="Librería">Librería</option>
+                <option value="Deporte">Deporte</option>
+                <option value="Supermercado">Supermercado</option>
+                <option value="Cine">Cine</option>
+              </select>
+            </div>
+            <div class="mb-3">
+            </div>
+            <p class="text-danger"></p>
+            <button type="submit" class="btn btn-outline-primary" (click)="postEmpresas()">Registrarse</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  -->
+ 
+  <section class=" h-100 h-custom" style="background-color: #222830;width: vh-100;">
+    <div class="container py-4 h-100 ">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-10 ">
+          <div class="card card-registration my-4" style="border-radius: 0.8rem;">
+            <div class="row g-0">
+              <div class="col-xl-6 d-none d-xl-block" style="border-radius: 0.8rem;">
+                <img src="/assets/images/edificio.jpg" class="rounded mx-auto d-block img-fluid img-fondo" 
+                style="border-radius: 1rem; "  alt="...">
+              </div>
+              <div class="col-xl-6">
+                <div class="card-body p-md-5 text-black" style="margin-top:-2rem;margin-bottom:-2rem"  >
+                  
+
+                  <div class="text-center mb-3">
+                    <i class="fas fa-cubes fa-2x me-3" style="color: #222830;"></i>
+                    <i  class="fas fa-user-circle fa-7x text-black tamaño-icono" ><i class="bi bi-person-bounding-box"></i></i>
+                    <br>
+                    <span class="h1 fw-bold mb-0"><p></p>   Registro</span>
+                  </div>
+  
+                  <form #registerForm="ngForm">
+                    <div class="row">
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="form3Example1m">Nombre de la empresa:</label>
+                          <input type="text" class="form-control form-control-lg" id="inputNombre" name="nombre" #nombre="ngModel"
+                          [(ngModel)]="empresasModelPost.nombre" required>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="form3Example1n">Usuario:</label>
+                          <input  type="text" class="form-control form-control-lg" id="inputUsuario" name="usuario" #usuario="ngModel"
+                          [(ngModel)]="empresasModelPost.usuario" required>
+                        </div>
+                      </div>
+                    </div>
+    
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="form3Example8">Tipo Empresa:</label>
+                      <select class=" form-control-lg" id="tipoEmpresa" style="width:100%; height: 2rem;font-size:1rem" name="tipoEmpresa" #tipoEmpresa="ngModel"
+                      [(ngModel)]="empresasModelPost.tipoEmpresa" required>
+                      <option value="Restaurante">Restaurante</option>
+                      <option value="Ventas de tecnología">Venta de tecnología</option>
+                      <option value="Librería">Librería</option>
+                      <option value="Deporte">Deporte</option>
+                      <option value="Venta de ropa">Venta de ropa</option>
+                      <option value="Venta de calzado">Venta de calzado</option>
+                      <option value="Musical">Musical</option>
+                      <option value="Floristería">Floristería</option>
+                      <option value="Cine">Cine</option>
+                    </select>                    
+                    </div>
+  
+                    <div class="row">
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="form3Example1m1">Contraseña de la empresa:</label>
+                          <input type="password" class="form-control form-control-lg" id="inputPassword" name="password" #password="ngModel"
+                          [(ngModel)]="empresasModelPost.password" required>                       
+                        </div>
+                      </div>
+  
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="form3Example1n1">Confirmación de contraseña:</label>
+                          <input type="password" id="form2Example27" class="form-control form-control-lg"  name="repeatPass" 
+                      [(ngModel)]="repeatPass" required>
+                        </div>
+                      </div>
+                    </div>
+    
+                    <div class="form-check d-flex justify-content-center mb-2">
+                      <input ngModel name="terminos" class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" required/>
+                      <label class="form-check-label" for="form2Example3">
+                        Estoy de acuerdo con los <a > <b>Términos del servicio</b></a>
+                      </label>
+                    </div>
+  
+                    <div class="text-center mb-3">
+                      <button [disabled]="!registerForm.form.valid" id="boton" class="btn btn-dark btn-lg btn-block" type="button"  
+                      routerLinkActive="active" (click)="checkPass()">Resgistrarse</button>
+                    </div>     
+                    
+
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<router-outlet></router-outlet>

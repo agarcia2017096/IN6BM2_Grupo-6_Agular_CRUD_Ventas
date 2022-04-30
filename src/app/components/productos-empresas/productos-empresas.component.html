@@ -1,0 +1,441 @@
+<div class="row justify-content-center align-items-center" style="position: fixed; z-index: 3;width: 100.2vw">
+  <div class="col-12 ">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <i class="bi bi-building"></i>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center text-white" id="navbarNav">
+          <ul class="nav navbar-nav pull-xs-center">
+
+            <li class="nav-item mx-5 ">
+              <a id="dd" class="nav-link text-white" [routerLink]="['/usuario/dash-board', idEmpresa]" routerLinkActive="active">Volver <i
+                  class="bi bi-arrow-left-short"></i></a>
+            </li>
+            <li class="nav-item mx-5 ">
+              <a id="dd" class="nav-link text-white" routerLink="/" routerLinkActive="active">Inicio <i
+                  class="bi bi-clipboard-check"></i></a>
+            </li>
+            <li class="nav-item mx-5">
+              <a id="dd" class="nav-link text-white" routerLink="/login" routerLinkActive="active">Login <i
+                  class="bi bi-play"></i></a>
+            </li>
+
+
+
+            <div id="dd" class="dropdown" style="position: relative; z-index: 3"
+              *ngIf="_usuarioService.obtenerIdentidad()">
+              <button style="color: whitesmoke;" class="btn dropdown-toggle dd2" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                {{ _usuarioService.obtenerIdentidad().nombre }} <i class="bi bi-person-badge"></i>
+              </button>
+              <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
+
+                <div style="background-color: #222830 ">
+                  <a class="dropdown-item" style="background-color: #222830">
+                    <img src="assets/images/iconoUsuario.png" style="width: 120px;height: 120px">
+                  </a>
+                </div>
+
+                <a style="color: #222830;" class="dropdown-item" routerLink="/usuario/productos-empresas">
+                  {{ _usuarioService.obtenerIdentidad().nombre }}
+                </a>
+
+                <div>
+                  <hr class="dropdown-divider">
+                </div>
+
+                <div class="dropdown-item" style="background-color: #E74C3C; color: #222830">
+                  <a routerLink="/inicio" routerLinkActive="active" class="dropdown-item"
+                    style="background-color: #E74C3C;color: #222830">↤ SALIR</a>
+                </div>
+              </div>
+            </div>
+
+
+          </ul>
+        </div>
+      </div>
+
+    </nav>
+
+  </div>
+</div>
+
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src="/assets/images/perfilEmpresa.jpg" alt="" class="img-fluid rounded-circle"
+          style="width:100%;height:100%;border-radius:60rem">
+        <h1 class="text-light" ><a> {{
+          empresaModelId.nombre }}</a></h1>
+
+        <div class="social-links mt-3 text-center">
+          <a class="twitter"><i class="bi bi-chat-quote"></i></a>
+          <a class="facebook"><i class="bi bi-clipboard-data-fill"></i></a>
+          <a class="instagram"><i class="bi bi-lightbulb"></i></a>
+          <a class="google-plus"><i class="bi bi-envelope-check-fill"></i></a>
+          <a class="linkedin"><i class="bi bi-shield-check"></i></a>
+        </div>
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li>
+            <a class="nav-link scrollto active" data-bs-toggle="modal" data-bs-target="#modalAgregarProducto"><i
+                class="bi bi-plus-square"></i> <span>Agregar Producto </span></a>
+          </li>
+          <li>
+            <a class="nav-link scrollto"><i class="bi bi-search"></i> <span>Buscar</span></a>
+          </li>
+          <li>
+            <a class="nav-link scrollto" [routerLink]="['/usuario/dash-board', idEmpresa]" routerLinkActive="active"><i
+                class="bi bi-bar-chart-line"></i> <span>Sucursales </span></a>
+          </li>
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header><!-- End Header -->
+
+  <!-- Modal Agregar Producto -->
+  <div class="modal fade" id="modalAgregarProducto" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background: #040b14">
+          <h5 class="modal-title" id="exampleModalLabel" style="color: whitesmoke"><i
+              class="bi bi-file-earmark-plus-fill"></i> ProductoAgregar Producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="background-color: #E5E7E9">
+          <form class="was-validated">
+            <div class="mb-3">
+              <label for="NombreProducto"> Nombre del producto </label>
+              <input type="text" class="form-control" id="inputNombreProducto" name="NombreProducto"
+                #NombreProducto="ngModel" [(ngModel)]="productoModelPost.NombreProducto" required>
+            </div>
+            <div class="mb-3">
+              <label for="descripcion"> Descripcion del producto </label>
+              <input type="text" class="form-control" id="inputDescripcion" name="descripcion" #descripcion="ngModel"
+                [(ngModel)]="productoModelPost.descripcion" required>
+            </div>
+            <div class="mb-3">
+              <label for="NombreProveedor"> Nombre del proveedor </label>
+              <input type="text" class="form-control" id="inputNombreProveedor" name="NombreProveedor"
+                #NombreProveedor="ngModel" [(ngModel)]="productoModelPost.NombreProveedor" required>
+            </div>
+            <div class="mb-3">
+              <label for="Stock">Stock </label>
+              <input type="Number" class="form-control" id="inputStock" name="Stock" #Stock="ngModel"
+                [(ngModel)]="productoModelPost.Stock" required>
+            </div>
+            <div class="mb-3">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer" style="background: #040b14">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+            (click)="postProductos()">Agregar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="hero-container" data-aos="fade-in">
+      <h1>Gestión de Productos</h1>
+      <p style="color:#F1E8B2"> Empresa <span class="typed"
+          data-typed-items="Designer, Developer, Freelancer, Photographer"></span></p>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+    <!-- ======= Opciones de configuración
+ Section ======= -->
+    <section id="facts" class="facts" style="background-image: linear-gradient(to top, #ffffff, #efeeeee6);">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Opciones de configuración</h2>
+          <p>La de gestión de producto permite a la empresas conocer a detalle los recursos de los que puede disponer,
+            manteniendo un control funcional y adecuado dentro del mercado. </p>
+        </div>
+
+        <div class="row no-gutters">
+
+          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up">
+            <div class="count-box">
+              <i class="bi bi-check2-circle"></i>
+              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1"
+                class="purecounter"></span>
+              <p><strong>Clientes</strong> satisfechos</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="100">
+            <div class="count-box">
+              <i class="bi bi-journal-richtext"></i>
+              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
+                class="purecounter"></span>
+              <p><strong>Proyecto</strong> funcional</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="200">
+            <div class="count-box">
+              <i class="bi bi-headset"></i>
+              <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1"
+                class="purecounter"></span>
+              <p><strong>Sorporte</strong> técnico</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="300">
+            <div class="count-box">
+              <i class="bi bi-people"></i>
+              <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1"
+                class="purecounter"></span>
+              <p><strong>Equipo</strong> comprometido</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    <!-- End Opciones de configuración
+  Section -->
+
+    <!-- ======= Tabla Section ======= -->
+    <section id="skills" class="skills section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Productos</h2>
+          <p></p>
+        </div>
+
+                            <!-- Button trigger modal -->
+                            <button  id="botomOptionsAdd" style="background-color: #222830 ;" type="button"
+                            class="btn btn-primary col-3" data-bs-toggle="modal" data-bs-target="#exampleModal3" >
+                            <i class="bi bi-send-plus-fill"></i> Enviar productos a Sucursal
+                          </button>        
+        
+
+
+                          
+        <div class="row skills-content">
+
+
+
+          <div class="col-lg" data-aos="fade-up">
+
+            <table class="table table-responsive table-hover ">
+              <thead>
+                <tr>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Descripción</th>
+                  <th scope="col">Proveedor.</th>
+                  <th scope="col">Stock</th>
+                  <th scope="col">Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Implementacion de ngFor -->
+                <tr *ngFor="let prod of productoModelGet">
+                  <td>{{prod.NombreProducto}}</td>
+                  <td>{{prod.descripcion}}</td>
+                  <td>{{prod.NombreProveedor}}</td>
+                  <td>{{prod.Stock}}</td>
+                  <td *ngIf="_usuarioService.obtenerIdentidad().rol === 'Empresa'">
+
+                    <!-- Button trigger modal -->
+                    <button  (click)="getProductoIdEditar(prod._id)" id="botomOptionsDelete" style="background-color: #3C616C ;" type="button"
+                      class="btn btn-primary col-3" data-bs-toggle="modal" data-bs-target="#exampleModal2" >
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+
+                    <!-- Button trigger modal -->
+                    <button id="botomOptionsEdit" style="background-color: #3C616C;" type="button"
+                      class="btn btn-primary col-3" (click)="deleteProductos(prod._id)">
+                      <i class="bi bi-trash3-fill"></i>
+                    </button>
+
+
+
+                  </td>
+                  <td *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_ADMINISTRADOR'">Solo la empresa puede hacer esto</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Tabla Section -->
+
+    
+    <!-- ======= Sobre el proyecto Section ======= -->
+    <section id="portfolio" class="portfolio section"
+      style="background-image: linear-gradient(to bottom, #ffffff, #d7d7d79f);">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Sobre el proyecto</h2>
+          <p> </p>
+        </div>
+
+        <div class="row" data-aos="fade-up">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" style="font-size:1.2rem" class="filter-active">SUCURSALES DE EMPRESA</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="./../../../assets/images/iconoServicio4.jpg" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="./../../../assets/images/iconoServicio1.jpg" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="./../../../assets/images/iconoSercivio2.jpg" class="img-fluid" alt="">
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Derechos reservados © 2022 <strong><span>Grupo #6</span></strong>
+      </div>
+      <div class="credits">
+        <a href="https://www.kinal.org.gt/" target="_blank">Fundación Kinal</a>
+      </div>
+    </div>
+  </footer><!-- End  Footer -->
+
+  <a class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+
+
+</body>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div style="background-color: #040b14;" class="modal-header">
+        <h5 style="color: white;" class="modal-title" id="exampleModalLabel"> <i class="bi bi-pen-fill"></i> Editar
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="background-color: #EBF5FB;">
+        <form class="was-validated">
+          <div class="mb-3">
+            <label for="NombreProducto"> Nombre del producto </label>
+            <input type="text" class="form-control" id="inputNombreProducto" name="NombreProducto"
+              #NombreProducto="ngModel" [(ngModel)]="productoModelGetId.NombreProducto"  required>
+          </div>
+          <div class="mb-3">
+            <label for="descripcion"> Descripcion del producto </label>
+            <input type="text" class="form-control" id="inputDescripcion" name="descripcion" #descripcion="ngModel"
+              [(ngModel)]="productoModelGetId.descripcion" required>
+          </div>
+          <div class="mb-3">
+            <label for="NombreProveedor"> Nombre del proveedor </label>
+            <input type="text" class="form-control" id="inputNombreProveedor" name="NombreProveedor"
+              #NombreProveedor="ngModel" [(ngModel)]="productoModelGetId.NombreProveedor" required>
+          </div>
+          <div class="mb-3">
+            <label for="Stock">Stock </label>
+            <input type="Number" class="form-control" id="inputStock" name="Stock" #Stock="ngModel"
+              [(ngModel)]="productoModelGetId.Stock" required>
+          </div>
+          <div class="mb-3">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer" style="background-color: #040b14;">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="editarProductos()">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div style="background-color: #040b14;" class="modal-header">
+        <h5 style="color: white;" class="modal-title" id="exampleModalLabel"> <i class="bi bi-send-check"></i>  Enviar Producto a Sucursal
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="background-color: #EBF5FB;">
+        <form #EnviarProducto="ngForm" class="was-validated">
+
+          <div class="form-group">
+            <label for="NombreSucursal"> Nombre de la Sucursal: </label><br>
+            <select id="NombreSucursal" style="width:100%; height: 2rem;" name="NombreSucursal" 
+            #NombreSucursal="ngModel" [(ngModel)]="productoSucursalesModelPost.NombreSucursal" required>
+              <option  *ngFor="let sucursal of sucursalesModelGet" value={{sucursal.nombreSucursal}}>{{sucursal.nombreSucursal}}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="NombreProductoSucursal"> Nombre del producto: </label>
+
+            <select id="NombreProductoSucursal" style="width:100%; height: 2rem;" name="NombreProductoSucursal" 
+            #NombreSucursal="ngModel" [(ngModel)]="productoSucursalesModelPost.NombreProductoSucursal" required>
+              <option  *ngFor="let producto of productoModelGet" value={{producto.NombreProducto}}>{{producto.NombreProducto}}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="StockSucursal">Stock:</label>
+            <input type="Number" class="form-control" id="inputStockSucursal" name="StockSucursal"  min="1" value="1" 
+            #StockSucursal="ngModel" [(ngModel)]="productoSucursalesModelPost.StockSucursal" >
+          </div>
+
+          <div class="mb-3">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer" style="background-color: #040b14;">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button [disabled]="!EnviarProducto.form.valid" type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="postProductoSucursal()">Enviar Producto</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<router-outlet></router-outlet>
