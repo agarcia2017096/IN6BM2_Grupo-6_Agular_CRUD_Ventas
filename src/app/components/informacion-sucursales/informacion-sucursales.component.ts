@@ -81,9 +81,7 @@ export class InformacionSucursalesComponent implements OnInit {
 
       console.log(" id sucursal "+this.idEmpresa)
 
-      this.getSucursales (dataRuta.get('idSucursal'));
-      this.getSucursalesGrafica (dataRuta.get('idSucursal'))
-      
+      this.getSucursales (dataRuta.get('idSucursal'));      
     })
   }
 
@@ -92,6 +90,16 @@ export class InformacionSucursalesComponent implements OnInit {
         (response) => {
           this.sucursalesModelGet = response.producto;
           console.log(this.sucursalesModelGet)
+          this._activatedRoute.paramMap.subscribe((dataRuta)=>{ 
+            
+            console.log( ' ARRAY'+ this.sucursalesModelGet       )
+            this.sucursalesModelGet.forEach(element => {
+              console.log(element)
+            });
+
+            this.getSucursalesGrafica (dataRuta.get('idSucursal'))
+  
+          })
         },
         (error)=>{
           Swal.fire({
@@ -104,14 +112,7 @@ export class InformacionSucursalesComponent implements OnInit {
   }
 
   getSucursalesGrafica (idSucursal){
-
-    this._activatedRoute.paramMap.subscribe((dataRuta)=>{
-  
-
-
-      this.getSucursales (dataRuta.get('idSucursal'));      
-    })
-
+    this.sucursalesModelGet
     this._productoSucursalService.ObtenerProductosSucursal (idSucursal, this.token).subscribe(
       (response) => {
 
@@ -191,15 +192,32 @@ export class InformacionSucursalesComponent implements OnInit {
               'El producto fue eliminado exitosamente',
               'success'
             )
-            this._activatedRoute.paramMap.subscribe((dataRuta)=>{
   
+            this.chartOptions = {
+              responsive: true,
+            };
+            //Nombres productos
+            this.chartLabels = [];
+            //cantidad de producto
+            this. chartData = [];
+            this.chartColors = [
+              {
+                backgroundColor: []
+              }
+            ];
+            this. chartLegend = true;
+            this.chartPlugins = [];
+    
+            this._activatedRoute.paramMap.subscribe((dataRuta)=>{
               this.getSucursales (dataRuta.get('idSucursal'));
-              this.getSucursalesGrafica (dataRuta.get('idSucursal'))
-
-        
-        
-                            
-            })      
+    
+    
+              
+              console.log( ' ARRAY'+ this.sucursalesModelGet       )
+              this.sucursalesModelGet.forEach(element => {
+                console.log(element)
+              });
+            })    
           },
           (error)=>{
             Swal.fire({
@@ -231,11 +249,34 @@ export class InformacionSucursalesComponent implements OnInit {
           icon: 'success',
           text: 'Venta exitosa',
         })
+
+        this.chartOptions = {
+          responsive: true,
+        };
+        //Nombres productos
+        this.chartLabels = [];
+        //cantidad de producto
+        this. chartData = [];
+        this.chartColors = [
+          {
+            backgroundColor: []
+          }
+        ];
+        this. chartLegend = true;
+        this.chartPlugins = [];
+
         this._activatedRoute.paramMap.subscribe((dataRuta)=>{
           this.getSucursales (dataRuta.get('idSucursal'));
-          this.getSucursalesGrafica (dataRuta.get('idSucursal'))
 
-        })      },
+
+          
+          console.log( ' ARRAY'+ this.sucursalesModelGet       )
+          this.sucursalesModelGet.forEach(element => {
+            console.log(element)
+          });
+        })      
+      },
+
       (error) => {
         console.log(<any>error);
         console.log('EJEMPLO');

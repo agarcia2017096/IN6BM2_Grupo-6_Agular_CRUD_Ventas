@@ -32,14 +32,17 @@ export class DashBoardComponent implements OnInit {
   //EMPRESAS
   public sucursalesModelGet: Sucursales ;
   public sucursalModelId: Sucursales ;
+  public sucursalModelIdEdit: Sucursales;
 
   public sucursalesModelPost: Sucursales ;
 
 
   constructor(    public _productoSucursalService: ProductosSucursalService,
-    public _activatedRoute: ActivatedRoute, private _sucursalesService: SucursalesService, public _usuarioService: UsuarioService) {
+    public _activatedRoute: ActivatedRoute, private _sucursalesService: SucursalesService, public _usuarioService: UsuarioService)
+     {
     this.sucursalesModelPost = new Sucursales('','','','','')
     this.sucursalModelId = new Sucursales('','','','','')
+    this.sucursalModelIdEdit = new Sucursales("", "", "", "", "");
 
     this.token = this._usuarioService.obtenerToken()
     this.identidad = this._usuarioService.obtenerIdentidad();
@@ -70,6 +73,26 @@ export class DashBoardComponent implements OnInit {
       });
 
     })
+  }
+
+  getSucursalesId(idSucursal) {
+    this._sucursalesService.ObtenerSucursalesId(this._usuarioService.obtenerToken(), idSucursal).subscribe({
+      
+      next: (response: any)=> {  // 200
+        
+        this.sucursalModelIdEdit = response.Sucursal
+        console.log(this.sucursalModelIdEdit)
+      },
+      error: (err) => { //400 404 500 401 403
+        Swal.fire({
+          icon: "error",
+          title: err.error.mensaje,
+          footer: "Ingrese los datos de nuevo",
+        });
+      },
+      complete: ()=>{
+
+      }})
   }
 
   getSucursales (){
@@ -109,11 +132,31 @@ export class DashBoardComponent implements OnInit {
       )
     }
 
+    putSucursales(idSucursal) {
+      this._sucursalesService.EditarSucursales(this.sucursalModelIdEdit, this._usuarioService.obtenerToken(), idSucursal).subscribe({
+        
+        next: (response: any)=> {  // 200
+          
+          this.getSucursales();
+        },
+        error: (err) => { //400 404 500 401 403
+          Swal.fire({
+            icon: "error",
+            title: err.error.message,
+            footer: "Ingrese los datos de nuevo",
+          });
+          console.log(err);
+        },
+        complete: ()=>{
+  
+        }})
+    }
+
     deleteSucursales(idSucursal){
       
       Swal.fire({
         title: '¿Está seguro que desea eliminar la sucursal?',
-        text: "Esta sucursal sera eliminada permanentemente",
+        text: "Será eliminada permanentemente",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

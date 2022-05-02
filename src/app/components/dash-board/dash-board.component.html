@@ -138,7 +138,7 @@
         <i class="bi bi-plus-circle-dotted"></i> Agregar Sucursales
       </h6>
     </a>
-    <!-- Modal -->
+    <!-- Modal Add-->
     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content" style="background-color: #E5E7E9">
@@ -199,6 +199,70 @@
         </div>
       </div>
     </div>
+
+    <!-- Modal Edit-->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div style="background-color: #040b14;" class="modal-header">
+        <h5 style="color: white;" class="modal-title" id="exampleModalLabel"> <i class="bi bi-pen-fill"></i> Editar
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="background-color: #EBF5FB;">
+        <form #editValid="ngForm" class="was-validated">
+          <div class="modal-body">
+
+            <div class="form-group">
+              <label for="nombreEmpresa"> Nombre de la Sucursal: </label>
+              <input type="text" class="form-control" id="inputnombreSucursal" name="nombreSucursal"
+                #nombreSucursal="ngModel" [(ngModel)]="sucursalModelIdEdit.nombreSucursal" required>
+            </div>
+
+            <div class="form-group">
+              <label for="direccioSucursal"> Direccion sucursal: </label>
+
+              <select id="direccioSucursal" style="width:100%; height: 2rem;" name="dirección" #direccionSucursal="ngModel"
+              [(ngModel)]="sucursalModelIdEdit.direccionSucursal" required>
+              <option value="Amatitlán">Amatitlán</option>
+              <option value="Chinautla">Chinautla</option>
+              <option value="Chuarrancho">Chuarrancho</option>
+              <option value="Ciudad de Guatemala">Ciudad de Guatemala</option>
+              <option value="Fraijanes">Fraijanes</option>
+              <option value="	Mixco">	Mixco</option>
+              <option value="Palencia">Palencia</option>
+              <option value="San José del Golfo">San José del Golfo</option>
+              <option value="San José Pinula">San José Pinula</option>
+              <option value="San Juan Sacatepéquez">San Juan Sacatepéquez</option>
+              <option value="San Miguel Petapa">San Miguel Petapa</option>
+              <option value="San Pedro Ayampuc">San Pedro Ayampuc</option>
+              <option value="San Pedro Sacatepéquez">San Pedro Sacatepéquez</option>
+              <option value="San Raymundo">San Raymundo</option>
+              <option value="Santa Catarina Pinula">Santa Catarina Pinula</option>
+              <option value="Villa Canales">Villa Canales</option>
+              <option value="	Villa Nueva">	Villa Nueva</option>
+            </select>
+            
+            </div>
+
+            <div class="form-group">
+              <label for="telefonoSucursal"> Telefono: </label>
+              <input pattern="^[0-9]{8}$" type="tel" class="form-control" id="telefonoSucursal" name="telefono" #telefonoSucursal="ngModel"
+              [(ngModel)]="sucursalModelIdEdit.telefono" required>
+            </div>
+            
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer" style="background-color: #040b14;">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button [disabled]="!editValid.form.valid" type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="putSucursales(sucursalModelIdEdit._id)">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
     <h1 class="h1 text-center" id="pageHeaderTitle">SUCURSALES EN EL PAÍS</h1>
 
               <article   *ngFor="let sucursal of sucursalesModelGet;let i = index" class="postcard dark" [ngClass]="coloresDinamicos[i]">
@@ -226,7 +290,9 @@
                       <button type="button" [routerLink]="['/usuario/informacion-sucursales/', sucursal._id]" routerLinkActive="active" class="btn text-light">
                         <i class="bi bi-bar-chart-line"></i> Productos de sucursal</button>
                     </li>
-                   
+                    <li class="tag__item play orange"*ngIf="_usuarioService.obtenerIdentidad().rol === 'Empresa'">
+                      <button type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn text-light" (click)="getSucursalesId(sucursal._id)"><i class="bi bi-pencil-square"></i> Editar</button>
+                    </li>
                     <li class="tag__item play red"*ngIf="_usuarioService.obtenerIdentidad().rol === 'Empresa'">
                       <button type="button" class="btn text-light" (click)="deleteSucursales(sucursal._id)"><i
                           class="bi bi-trash3"></i> Eliminar</button>

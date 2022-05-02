@@ -74,8 +74,7 @@
       <div class="profile">
         <img src="/assets/images/perfilEmpresa.jpg" alt="" class="img-fluid rounded-circle"
           style="width:100%;height:100%;border-radius:60rem">
-        <h1 class="text-light" ><a> {{
-          empresaModelId.nombre }}</a></h1>
+        <h1 *ngIf="_usuarioService.obtenerIdentidad()" class="text-light" ><a>  {{ _usuarioService.obtenerIdentidad().nombre }}</a></h1>
 
         <div class="social-links mt-3 text-center">
           <a class="twitter"><i class="bi bi-chat-quote"></i></a>
@@ -243,9 +242,9 @@
                 <tr>
                   <th scope="col">Nombre</th>
                   <th scope="col">Descripción</th>
-                  <th scope="col">Proveedor.</th>
-                  <th scope="col">Stock</th>
-                  <th scope="col">Opciones</th>
+                  <th scope="col">Proveedor</th>
+                  <th class="text-center" scope="col">Stock</th>
+                  <th class="text-center" scope="col">Opciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -254,8 +253,8 @@
                   <td>{{prod.NombreProducto}}</td>
                   <td>{{prod.descripcion}}</td>
                   <td>{{prod.NombreProveedor}}</td>
-                  <td>{{prod.Stock}}</td>
-                  <td *ngIf="_usuarioService.obtenerIdentidad().rol === 'Empresa'">
+                  <td class="text-center">{{prod.Stock}}</td>
+                  <td class="text-center" *ngIf="_usuarioService.obtenerIdentidad().rol === 'Empresa'">
 
                     <!-- Button trigger modal -->
                     <button  (click)="getProductoIdEditar(prod._id)" id="botomOptionsDelete" style="background-color: #3C616C ;" type="button"

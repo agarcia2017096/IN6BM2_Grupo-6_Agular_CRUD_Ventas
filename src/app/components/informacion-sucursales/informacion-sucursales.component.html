@@ -157,12 +157,13 @@
                     </button>
                   </div>
                 </div>
-                <div class="col-12 col-md-6 ">
+                <div class="col-12 col-md-1"></div>
+                <div class="col-12 col-md-5 justify-content-center align-items-center ">
                   <br><br>
                   <h1 *ngIf="_usuarioService.obtenerIdentidad()" class="mt-4"> {{ sucursalModelId.nombreSucursal }}</h1>
-                  <hr><p>Una empresa que busca fortalecer su posición como líder mundial en el mercado de la tecnología, a
+                  <hr><p>Una empresa que busca fortalecer su posición como líder mundial en el mercado, a
                      través de la innovación y el talento de las personas que trabajan en la organización. Nuestros valores reflejan
-                    el negocio estructurado por un grupo de emprendedores que buscan innovar la industria</p>
+                    el negocio estructurado por un grupo de emprendedores que buscan innovar la industria.</p>
                 </div>
               </div>
             </div>
@@ -250,8 +251,8 @@
               <div class="col-xl-6">
                 <div class="card mb-4">
                   <div class="card-header" style="background-color: #e07c2a;">
-                    <i class="fas fa-chart-bar me-1"></i>
-                    Reporte
+                    <i class="bi bi-file-earmark-text-fill"></i>
+                            Reporte de productos vendidos
                   </div>
 
 
@@ -285,7 +286,7 @@
                           </button>
                           <br><br>
 
-        <div class="row justify-content-center align-items-center">
+        <div class="row ">
           <div class="col-12">
             <div class="card mb-4">
               <div class="card-header" style="background-color: #222830;color: white;" >
@@ -367,7 +368,28 @@
   
 
 
-                      <!-- Modal -->
+
+  
+                    </td>
+                    <td *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_ADMINISTRADOR'">Solo la empresa puede hacer esto</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </main>
+
+
+  </div>
+
+
+</body>
+
+                      <!-- Modal Vender-->
                       <div class="modal fade text-left" id="exampleModalVentas" tabindex="-1" aria-labelledby="exampleModalTareaAgregar"
                       aria-hidden="true">
                       <div class="modal-dialog modal-dialog-centered">
@@ -405,25 +427,6 @@
                         </div>
                       </div>
                       </div>
-  
-                    </td>
-                    <td *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_ADMINISTRADOR'">Solo la empresa puede hacer esto</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-    </main>
-
-
-  </div>
-
-
-</body>
 
 <app-footer></app-footer>
 <router-outlet></router-outlet>
