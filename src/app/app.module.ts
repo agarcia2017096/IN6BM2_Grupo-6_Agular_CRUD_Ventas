@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DefaultRouterComponent } from './components/default-router/default-router.component';
 import { DefaultAdminComponent } from './components/default-admin/default-admin.component';
+import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { DefaultAdminComponent } from './components/default-admin/default-admin.
     EmpresasComponent,
     ProductosEmpresasComponent,
     DefaultRouterComponent,
-    DefaultAdminComponent
+    DefaultAdminComponent,
+    EditarPerfilComponent
   ],
   imports: [
     BrowserModule,

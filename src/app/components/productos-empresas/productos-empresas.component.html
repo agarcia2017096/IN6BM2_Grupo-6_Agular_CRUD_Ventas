@@ -13,12 +13,8 @@
                   class="bi bi-arrow-left-short"></i></a>
             </li>
             <li class="nav-item mx-5 ">
-              <a id="dd" class="nav-link text-white" routerLink="/" routerLinkActive="active">Inicio <i
+              <a (click)="logOut()" id="dd" class="nav-link text-white" routerLink="/" routerLinkActive="active">Inicio <i
                   class="bi bi-clipboard-check"></i></a>
-            </li>
-            <li class="nav-item mx-5">
-              <a id="dd" class="nav-link text-white" routerLink="/login" routerLinkActive="active">Login <i
-                  class="bi bi-play"></i></a>
             </li>
 
 
@@ -46,7 +42,7 @@
                 </div>
 
                 <div class="dropdown-item" style="background-color: #E74C3C; color: #222830">
-                  <a routerLink="/inicio" routerLinkActive="active" class="dropdown-item"
+                  <a (click)="logOut()" routerLink="/inicio" routerLinkActive="active" class="dropdown-item"
                     style="background-color: #E74C3C;color: #222830">↤ SALIR</a>
                 </div>
               </div>
@@ -110,11 +106,11 @@
       <div class="modal-content">
         <div class="modal-header" style="background: #040b14">
           <h5 class="modal-title" id="exampleModalLabel" style="color: whitesmoke"><i
-              class="bi bi-file-earmark-plus-fill"></i> ProductoAgregar Producto</h5>
+              class="bi bi-file-earmark-plus-fill"></i>  Agregar Producto Empresa</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" style="background-color: #E5E7E9">
-          <form class="was-validated">
+          <form #validProducto="ngForm" class="was-validated">
             <div class="mb-3">
               <label for="NombreProducto"> Nombre del producto </label>
               <input type="text" class="form-control" id="inputNombreProducto" name="NombreProducto"
@@ -132,7 +128,7 @@
             </div>
             <div class="mb-3">
               <label for="Stock">Stock </label>
-              <input type="Number" class="form-control" id="inputStock" name="Stock" #Stock="ngModel"
+              <input  min="1" pattern ="[^0]" type="Number" class="form-control" id="inputStock" name="Stock" #Stock="ngModel"
                 [(ngModel)]="productoModelPost.Stock" required>
             </div>
             <div class="mb-3">
@@ -141,8 +137,8 @@
         </div>
         <div class="modal-footer" style="background: #040b14">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-            (click)="postProductos()">Agregar</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+          [disabled]="!validProducto.form.valid" (click)="postProductos(validProducto)">Agregar</button>
         </div>
       </div>
     </div>
@@ -351,7 +347,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div style="background-color: #040b14;" class="modal-header">
-        <h5 style="color: white;" class="modal-title" id="exampleModalLabel"> <i class="bi bi-pen-fill"></i> Editar
+        <h5 style="color: white;" class="modal-title" id="exampleModalLabel"> <i class="bi bi-pen-fill"></i> Editar Producto de Empresa
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -383,7 +379,7 @@
       </div>
       <div class="modal-footer" style="background-color: #040b14;">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="editarProductos()">Guardar cambios</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="editarProductos()">Guardar cambios</button>
       </div>
     </div>
   </div>
@@ -420,8 +416,8 @@
 
           <div class="mb-3">
             <label for="StockSucursal">Stock:</label>
-            <input type="Number" class="form-control" id="inputStockSucursal" name="StockSucursal"  min="1" value="1" 
-            #StockSucursal="ngModel" [(ngModel)]="productoSucursalesModelPost.StockSucursal" >
+            <input type="Number" class="form-control" id="inputStockSucursal" name="StockSucursal"  min="1" 
+            #StockSucursal="ngModel" [(ngModel)]="productoSucursalesModelPost.StockSucursal" required>
           </div>
 
           <div class="mb-3">
@@ -430,7 +426,7 @@
       </div>
       <div class="modal-footer" style="background-color: #040b14;">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button [disabled]="!EnviarProducto.form.valid" type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="postProductoSucursal()">Enviar Producto</button>
+        <button [disabled]="!EnviarProducto.form.valid" type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="postProductoSucursal(EnviarProducto)">Enviar Producto</button>
       </div>
     </div>
   </div>

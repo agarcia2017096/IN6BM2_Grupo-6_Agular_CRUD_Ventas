@@ -35,6 +35,7 @@ export class EmpresasComponent implements OnInit {
     this.identidad = this._usuarioService.obtenerIdentidad();
 
   }
+  
   ngOnInit(): void {
     this.getEmpresas();
 
@@ -55,11 +56,12 @@ export class EmpresasComponent implements OnInit {
     )}
 
 
-  postEmpresas (){
+  postEmpresas (validEmpresa){
      this._empresasService.RegistrarEmpresas(this.empresasModelPost, this.token = this._usuarioService.obtenerToken()).subscribe(
          (response)=>{
           console.log(<any>response);
             this.getEmpresas()
+            validEmpresa.reset()
             Swal.fire(
               'Se agrego correctamente su empresa!',
               '',
@@ -143,5 +145,11 @@ export class EmpresasComponent implements OnInit {
         }
       )
     }
+
+    logOut(){
+      localStorage.clear()
+      //localStorage.removeItem("token")
+    }
   
 }
+

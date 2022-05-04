@@ -1,0 +1,132 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <i class="bi bi-building"></i>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center text-white" id="navbarNav">
+        <ul class="nav navbar-nav pull-xs-center">
+          <li class="nav-item mx-5 ">
+            <a id="dd" [routerLink]="['/usuario/dash-board', idEmpresa]" class="nav-link text-white" href="/inicio">Volver <i class="bi bi-arrow-left-short"></i></a>
+          </li>
+
+          <div class="dropdown" style="position: relative; z-index: 3" *ngIf="_usuarioService.obtenerIdentidad()">
+            <button  style="color: whitesmoke;" class="btn dropdown-toggle dd2" type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              {{ _usuarioService.obtenerIdentidad().nombre }} <i class="bi bi-person-badge"></i>
+            </button>
+            <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
+
+              <div style="background-color: #222830 ">
+                <a class="dropdown-item" style="background-color: #222830">
+                  <img src="assets/images/iconoUsuario.png" style="width: 120px;height: 120px">
+                </a>
+              </div>
+
+              <a class="dropdown-item" >
+                {{ _usuarioService.obtenerIdentidad().nombre }}
+              </a>
+
+              <div>
+                <hr class="dropdown-divider">
+              </div>
+
+              <div class="dropdown-item" style="background-color: #E74C3C">
+                <a (click)="logOut()" routerLink="/inicio" routerLinkActive="active" class="dropdown-item"
+                  style="background-color: #E74C3C">↤ SALIR</a>
+              </div>
+            </div>
+          </div>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  
+<section class="h-100 bg-dark" style="background-color: #222830!important;width: vh-100;">
+    <div class="container py-4 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col ">
+          <div class="card card-registration my-4">
+            <div class="row g-0">
+              <div class="col-xl-6 d-none d-xl-block">
+                <img src="/assets/images/imagenPerfil.jpg" 
+                  alt="Sample photo" class="rounded mx-auto d-block img-fluid img-fondo "
+                  style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; height: 100%!important;" />
+                  
+              </div>
+
+              <div class="col-xl-6">
+                <div class="card-body p-md-5 text-black"
+                >
+                  <div class="text-center mb-3">
+                    <i class="fas fa-cubes fa-2x me-3" style="color: #222830;"></i>
+                    <i  class="fas fa-user-circle fa-7x text-black tamaño-icono" ><i class="bi bi-person-bounding-box"></i></i>
+                    <br>
+                    <span class="h1 fw-bold mb-0"><p></p>   PERFIL DE LA EMPRESA </span>
+                    <h3 *ngIf="_usuarioService.obtenerIdentidad()" class="mb-5 text-uppercase text-center"> {{ _usuarioService.obtenerIdentidad().nombre }}</h3>
+
+                  </div>
+
+                  <hr><br>
+
+                  <form #registerForm="ngForm">
+                    <div class="row">
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="form3Example1m">Nombre de la empresa:</label>
+                          <input type="text" class="form-control form-control-lg" id="inputNombre" name="nombre" #nombre="ngModel"
+                          [(ngModel)]="empresaModelId.nombre" required>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="form3Example1n">Usuario:</label>
+                          <input  type="text" class="form-control form-control-lg" id="inputUsuario" name="usuario" #usuario="ngModel"
+                          [(ngModel)]="empresaModelId.usuario" required>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="form3Example8">Tipo Empresa:</label>
+                      <select class=" form-control-lg" id="tipoEmpresa" style="width:100%; height: 2.5rem; font-size:1.2rem" name="tipoEmpresa" #tipoEmpresa="ngModel"
+                      [(ngModel)]="empresaModelId.tipoEmpresa" required>
+                      <option value="Restaurante">Restaurante</option>
+                      <option value="Ventas de tecnología">Venta de tecnología</option>
+                      <option value="Librería">Librería</option>
+                      <option value="Deporte">Deporte</option>
+                      <option value="Venta de ropa">Venta de ropa</option>
+                      <option value="Venta de calzado">Venta de calzado</option>
+                      <option value="Musical">Musical</option>
+                      <option value="Floristería">Floristería</option>
+                      <option value="Cine">Cine</option>
+                    </select>                    
+                    </div>
+                    <br>
+  
+
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="form3Example8">Descripción extra:</label>
+                      <textarea class="form-control form-control-lg" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <br>
+                    <div class="text-center mb-3">
+                      <button [disabled]="!registerForm.form.valid" id="boton" class="btn btn-dark btn-lg btn-block" type="button"  
+                      routerLinkActive="active"  (click)="putEmpresa()">Guardar Datos</button>
+                    </div>
+    
+                  </form>
+
+
+    
+               
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

@@ -14,14 +14,6 @@
               <a id="dd" class="nav-link text-white" routerLink="/" routerLinkActive="active">Inicio <i
                   class="bi bi-clipboard-check"></i></a>
             </li>
-            <li class="nav-item mx-5">
-              <a id="dd" class="nav-link text-white" routerLink="/login" routerLinkActive="active">Login <i
-                  class="bi bi-play"></i></a>
-            </li>
-            <li class="nav-item mx-5">
-              <a id="dd" class="nav-link text-white" routerLink="/registro" routerLinkActive="active">Registrarse <i
-                  class="bi bi-check2-all"></i></a>
-            </li>
 
 
             <div class="dropdown" style="position: relative; z-index: 3" *ngIf="_usuarioService.obtenerIdentidad()">
@@ -46,7 +38,7 @@
                 </div>
 
                 <div class="dropdown-item" style="background-color: #E74C3C">
-                  <a routerLink="/inicio" routerLinkActive="active" class="dropdown-item"
+                  <a (click)="logOut()" routerLink="/inicio" routerLinkActive="active" class="dropdown-item"
                     style="background-color: #E74C3C">↤ SALIR</a>
                 </div>
               </div>
@@ -143,7 +135,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
 
-          <form method="POST" action="${pageContext.request.contextPath}/ServletSalonController?accion=insertar"
+          <form #validEmpresa="ngForm" method="POST" action="${pageContext.request.contextPath}/ServletSalonController?accion=insertar"
             class="was-validated">
             <div class="modal-body">
 
@@ -179,7 +171,7 @@
 
             <div class="modal-footer" style="background-color: #222830">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="sumbit" class="btn btn-success" (click)="postEmpresas()"
+              <button [disabled]="!validEmpresa.form.valid" type="sumbit" class="btn btn-success" (click)="postEmpresas(validEmpresa)"
                 data-dismiss="createLabel" data-bs-dismiss="modal">Guardar</button>
             </div>
           </form>

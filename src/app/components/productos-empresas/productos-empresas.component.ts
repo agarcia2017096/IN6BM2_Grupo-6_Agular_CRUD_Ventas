@@ -121,10 +121,11 @@ export class ProductosEmpresasComponent implements OnInit {
     )
   }
 
-  postProductos() {
+  postProductos(validProducto) {
     this._productoService.RegistrarProductos(this.productoModelPost, this.token).subscribe(
       (response) => {
         this.getProductoId(this.idEmpresa)
+        validProducto.reset()
         Swal.fire({
           icon: 'success',
           text: 'Datos guardados con éxito',
@@ -135,15 +136,17 @@ export class ProductosEmpresasComponent implements OnInit {
           icon: 'error',
           title: 'Oops...',
           text: error.error.message,
+          footer: '*Ingrese los datos de nuevo*',
         })
       }
     )
   }
 
-  postProductoSucursal() {
+  postProductoSucursal(EnviarProducto) {
     this._productoSucursalService.MandarProductosSucursal(this.productoSucursalesModelPost, this.token).subscribe(
       (response) => {
         this.getProductoId(this.idEmpresa)
+        EnviarProducto.reset()
         Swal.fire({
           icon: 'success',
           text: 'Gestión de producto a sucursal exitosa',
@@ -155,6 +158,8 @@ export class ProductosEmpresasComponent implements OnInit {
           icon: 'error',
           title: 'Oops...',
           text: error.error.message,
+          footer: '*Ingrese los datos de nuevo*',
+
         })
       }
     )
@@ -175,6 +180,8 @@ export class ProductosEmpresasComponent implements OnInit {
           icon: 'error',
           title: 'Oops...',
           text: error.error.message,
+          footer: '*Ingrese los datos de nuevo*'
+
         })
       }
     )
@@ -216,6 +223,11 @@ export class ProductosEmpresasComponent implements OnInit {
       }
     })
     
+  }
+
+  logOut(){
+    localStorage.clear()
+    //localStorage.removeItem("token")
   }
 
 }

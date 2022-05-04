@@ -15,12 +15,8 @@
                   class="bi bi-arrow-left-short"></i></a>
             </li>
             <li class="nav-item mx-5 ">
-              <a id="dd" class="nav-link text-white" routerLink="/" routerLinkActive="active">Inicio <i
+              <a (click)="logOut()" id="dd" class="nav-link text-white" routerLink="/" routerLinkActive="active">Inicio <i
                   class="bi bi-clipboard-check"></i></a>
-            </li>
-            <li class="nav-item mx-5">
-              <a id="dd" class="nav-link text-white" routerLink="/login" routerLinkActive="active">Login <i
-                  class="bi bi-play"></i></a>
             </li>
 
 
@@ -48,7 +44,7 @@
                 </div>
 
                 <div class="dropdown-item" style="background-color: #E74C3C; color: #222830">
-                  <a routerLink="/inicio" routerLinkActive="active" class="dropdown-item"
+                  <a (click)="logOut()" routerLink="/inicio" routerLinkActive="active" class="dropdown-item"
                     style="background-color: #E74C3C;color: #222830">↤ SALIR</a>
                 </div>
               </div>
@@ -178,72 +174,21 @@
                 <div class="card mb-4">
                   <div class="card-header" style="background-color: #e07c2a;">
                     <i class="fas fa-chart-area me-1"></i>
-                    Encargados de esta sucursal
-                    <!-- Button trigger modal -->
-                    <button style="background-color: #3C616C ;" type="button" class="btn btn-primary"
-                      data-bs-toggle="modal" data-bs-target="#exampleModal15">
-                      <i class="bi bi-person-plus-fill"></i>
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal15" tabindex="-1" aria-labelledby="exampleModalLabel"
-                      aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div style="background-color: #222830;" class="modal-header">
-                            <h5 style="color: white;" class="modal-title" id="exampleModalLabel">Agregar encargado nuevo
-                            </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body" style="background-color: #EBF5FB;">
-                            <form class="was-validated">
-                              <div class="mb-3">
-                                <label class="form-label" for="usuario">Nombre</label>
-                                <input type="text" class="form-control" name="usuario" id="usuario" required>
-                              </div>
-                              <div class="mb-3">
-                                <label class="form-label" for="usuario">Apellido</label>
-                                <input type="text" class="form-control" name="usuario" id="usuario" required>
-                              </div>
-                              <div class="mb-3">
-                                <label class="form-label" for="usuario">Correo</label>
-                                <input type="email" class="form-control" name="usuario" id="usuario" required>
-                              </div>
-                              <div class="mb-3">
-                                <label class="form-label" for="clave">Puesto</label>
-                                <input type="password" class="form-control" name="clave" id="clave" required>
-                              </div>
-                              <div class="mb-3">
-                                <label class="form-label" for="clave">Imagen</label>
-                                <input type="file" class="form-control" name="clave" id="clave" required>
-                              </div>
-                              <p class="text-danger"></p>
-                            </form>
-                          </div>
-                          <div class="modal-footer" style="background-color: #222830;">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary">Guardar cambios</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <i class="bi bi-file-earmark-text-fill"></i> Reporte de stock de productos
                   </div>
-                  <div class="card-footer p-4 pt-0 bg-transparent border-top-20">
-                    <div class="d-flex align-items-end justify-content-between">
-                      <div class="d-flex align-items-center">
-                        <br>
-                        <img class="rounded-circle me-3" style="width:10%"
-                          src="https://cdn-icons-png.flaticon.com/512/2942/2942821.png" alt="..." />
-
-                        <div class="small">
-                          <br>
-                          <br>
-                          <div class="fw-bold">Fernando Martínez</div>
-                          <div class="text-muted">Encargado de ventas</div>
-                          <br>
-                        </div>
-                      </div>
+                  <div class="card-footer p-4 pt-0 bg-transparent border-top-20 " height="300000px">
+                    <div style="display: block;">
+                      <canvas baseChart 
+                        chartType="bar"
+                        [datasets]="chartData1"
+                        [colors]="chartColors"
+                        [labels]="chartLabels1"
+                        [options]="chartOptions1"
+                        [plugins]="chartPlugins1"
+                        [legend]="chartLegend1">
+                      </canvas>
                     </div>
+                    
                   </div>
                 </div>
               </div>
@@ -422,7 +367,7 @@
                           <div class="modal-footer" style="background-color: #222830;">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
 
-                            <button [disabled]="!Ventas.form.valid" type="button" class="btn btn-primary"  data-bs-dismiss="modal" (click)="editarProductosSucursal(idSucursal)" >Vender </button>
+                            <button [disabled]="!Ventas.form.valid" type="button" class="btn btn-success"  data-bs-dismiss="modal" (click)="editarProductosSucursal(idSucursal,Ventas)" >Vender </button>
                           </div>
                         </div>
                       </div>

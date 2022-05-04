@@ -110,11 +110,13 @@ export class DashBoardComponent implements OnInit {
     
     }
 
-    postSucursal(){
+    postSucursal(agregarSucursal){
       this._sucursalesService.AgregarSucursales(this.sucursalesModelPost, this.token= this._usuarioService.obtenerToken()).subscribe(
         (response)=>{
           console.log(response);
           this.getSucursales()
+          agregarSucursal.reset()
+
           Swal.fire(
             'Se agrego correctamente su sucursal!',
             '',
@@ -199,6 +201,11 @@ export class DashBoardComponent implements OnInit {
           console.log(<any>error)
         }
       )
+    }
+
+    logOut(){
+      localStorage.clear()
+      //localStorage.removeItem("token")
     }
 
 
