@@ -2,11 +2,21 @@
   <div class="col-12 ">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <i class="bi bi-building"></i>
         </button>
+
         <div class="collapse navbar-collapse justify-content-center text-white" id="navbarNav">
           <ul class="nav navbar-nav pull-xs-center">
+
+            <li class="nav-item mx-5 ">
+
+            </li>
+
+            <li class="nav-item mx-5 ">
+
+            </li>
 
             <li class="nav-item mx-5 ">
               <a id="dd" class="nav-link text-white" [routerLink]="['/usuario/dash-board', idEmpresa]" routerLinkActive="active">Volver <i
@@ -19,7 +29,7 @@
 
 
 
-            <div id="dd" class="dropdown" style="position: relative; z-index: 3"
+            <!--<div id="dd" class="dropdown nav-item mx-5" style="position: relative; z-index: 3"
               *ngIf="_usuarioService.obtenerIdentidad()">
               <button style="color: whitesmoke;" class="btn dropdown-toggle dd2" type="button" id="dropdownMenuButton1"
                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -33,7 +43,7 @@
                   </a>
                 </div>
 
-                <a style="color: #222830;" class="dropdown-item" routerLink="/usuario/productos-empresas">
+                <a [routerLink]="['/usuario/editarPerfil/', idEmpresa]" style="color: #222830;" class="dropdown-item" routerLink="/usuario/productos-empresas">
                   {{ _usuarioService.obtenerIdentidad().nombre }}
                 </a>
 
@@ -46,7 +56,7 @@
                     style="background-color: #E74C3C;color: #222830">↤ SALIR</a>
                 </div>
               </div>
-            </div>
+            </div>-->
 
 
           </ul>
@@ -61,7 +71,10 @@
 <body>
 
   <!-- ======= Mobile nav toggle button ======= -->
-  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+  
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#header"
+    aria-controls="header" aria-expanded="false" aria-label="Toggle navigation"><i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+</button>
 
   <!-- ======= Header ======= -->
   <header id="header">
@@ -218,11 +231,30 @@
           <p></p>
         </div>
 
-                            <!-- Button trigger modal -->
-                            <button  id="botomOptionsAdd" style="background-color: #222830 ;" type="button"
-                            class="btn btn-primary col-3" data-bs-toggle="modal" data-bs-target="#exampleModal3" >
-                            <i class="bi bi-send-plus-fill"></i> Enviar productos a Sucursal
-                          </button>        
+            <!-- Button trigger modal -->
+            <button  id="botomOptionsAdd" style="background-color: #222830 ;" type="button"
+                 class="btn btn-primary col-3" data-bs-toggle="modal" data-bs-target="#exampleModal3" >
+                 <i class="bi bi-send-plus-fill"></i> Enviar productos a Sucursal
+            </button> 
+
+        <div class="row">
+          <div class="col-md-8"><br>
+
+
+          </div>
+          
+          <div class="col-md-4">
+            <div class="input-group" style="background-color: #222830;border-radius: 0.5rem;">
+              <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+              <button style="color: white;border-top-right-radius: 0.5rem;border-bottom-right-radius: 0.5rem" type="button" class="btn btn-outline-secondary"><i class="bi bi-search"></i> Buscar</button>
+
+            </div>                  
+          </div>
+        </div>
+        <br>
+
+
+                             
         
 
 

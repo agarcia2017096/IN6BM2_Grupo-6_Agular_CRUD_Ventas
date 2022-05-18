@@ -50,8 +50,15 @@
 
                     <div class="form-outline mb-4">
                       <label class="form-label" for="form2Example17">Usuario</label>
-                      <input type="email" id="form2Example17" class="form-control form-control-lg" name="usuario" #usuario="ngModel"
-                      [(ngModel)]="usuarioModel.usuario" required>
+
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="background-color: rgb(236, 241, 247)"class="input-group-text" id="basic-addon1" class="form-control form-control-lg">@</span>
+                        </div>
+                        <input type="email" id="form2Example17" class="form-control form-control-lg" name="usuario" #usuario="ngModel"
+                        [(ngModel)]="usuarioModel.usuario" required>                      
+                      </div>
+
 
                     </div>
 

@@ -1,6 +1,6 @@
 <!--DIEGO PATZAN-->
 
-<div class="row justify-content-center align-items-center" style="position: fixed; z-index: 3;width: 100.2vw">
+<div class="row justify-content-center align-items-center" >
   <div class="col-12 ">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
@@ -14,14 +14,19 @@
               <a id="dd" class="nav-link text-white" [routerLink]="['/usuario/dash-board', idEmpresa]" routerLinkActive="active">Volver <i
                   class="bi bi-arrow-left-short"></i></a>
             </li>
+            <li class="nav-item mx-2 ">
+
+            </li>
             <li class="nav-item mx-5 ">
               <a (click)="logOut()" id="dd" class="nav-link text-white" routerLink="/" routerLinkActive="active">Inicio <i
                   class="bi bi-clipboard-check"></i></a>
             </li>
+            <li class="nav-item mx-2 ">
+
+            </li>
 
 
-
-            <div id="dd" class="dropdown" style="position: relative; z-index: 3"
+            <!--<div id="dd" class="dropdown" style="position: relative; z-index: 3"
               *ngIf="_usuarioService.obtenerIdentidad()">
               <button style="color: whitesmoke;" class="btn dropdown-toggle dd2" type="button" id="dropdownMenuButton1"
                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,7 +40,7 @@
                   </a>
                 </div>
 
-                <a style="color: #222830;" class="dropdown-item">
+                <a [routerLink]="['/usuario/editarPerfil/', idEmpresa]" style="color: #222830;" class="dropdown-item">
                   {{ _usuarioService.obtenerIdentidad().nombre }}
                 </a>
 
@@ -48,7 +53,7 @@
                     style="background-color: #E74C3C;color: #222830">↤ SALIR</a>
                 </div>
               </div>
-            </div>
+            </div>-->
 
 
           </ul>
@@ -56,66 +61,16 @@
       </div>
 
     </nav>
-
   </div>
 </div>
-
 <body>
+  
+
   <div id="layoutSidenav_content">
     <main>
       <div class="container-fluid px-4">
         <div class="card mb-4">
-          <div class="card-header">
-            <i class="fas fa-table me-1 "></i>
-            Informacion General
-            <button type="button" class="btn color-botones " data-bs-toggle="modal" data-bs-target="#exampleModalinfo">
-              <i class="bi bi-pencil-square"></i>
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModalinfo" tabindex="-1" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header" style="background-color: #222830;">
-                    <h5 style="color: white;" class="modal-title" id="exampleModalLabel">Editar datos sucursal</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="container">
-                      <div class="row">
-                        <form class="was-validated">
-                          <div class="mb-3">
-                            <label class="form-label" for="usuario">Nombre sucursal</label>
-                            <input type="text" class="form-control" name="usuario" id="usuario" required>
-                          </div>
-                          <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Descripción empresa</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                          </div>
-                          <div class="mb-3">
-                            <label class="form-label" for="clave">Imagen</label>
-                            <input type="file" class="form-control" name="clave" id="clave" required>
-                          </div>
-                          <p class="text-danger"></p>
-                        </form>
-                        <div class="col-12 col-sm-6"> </div>
-                        <div class="col-12 col-sm-6"> </div>
-                        <div class="col-12 col-sm-6"> </div>
-                        <div class="col-12 col-sm-6"> </div>
-                        <div class="col-12 col-sm-6"> </div>
-                        <div class="col-12 col-sm-6"> </div>
-
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer" style="background-color: #222830;">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn color-botones">Guardar cambios</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="card-header ">
           </div>
           <div class="card-body color-fondo">
             <div class="container color-fondo text-white text-center">
@@ -172,10 +127,12 @@
             <div class="row ">
               <div class="col-xl-6">
                 <div class="card mb-4">
+
                   <div class="card-header" style="background-color: #e07c2a;">
                     <i class="fas fa-chart-area me-1"></i>
                     <i class="bi bi-file-earmark-text-fill"></i> Reporte de stock de productos
                   </div>
+
                   <div class="card-footer p-4 pt-0 bg-transparent border-top-20 " height="300000px">
                     <div style="display: block;">
                       <canvas baseChart 
@@ -235,11 +192,35 @@
           <div class="col-12">
             <div class="card mb-4">
               <div class="card-header" style="background-color: #222830;color: white;" >
-                <i class="fas fa-table me-1 "></i>
-                <button type="button" class="btn color-botones " data-bs-toggle="modal" >
-                  <i class="bi bi-caret-right-fill"></i>   
-                </button>
-                   Productos de sucursal
+                <div class="row">
+                  <div class="col-md-8">
+
+                    <i class="fas fa-table me-1 "></i>
+                    <button type="button" class="btn color-botones " data-bs-toggle="modal" >
+                      <i class="bi bi-caret-right-fill"></i>   
+                    </button>
+                       Productos de sucursal
+                  </div>
+                  
+                  <div class="col-md-4">
+                    <div class="input-group">
+                      <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                      <button style="color: white" type="button" class="btn btn-outline-secondary"><i class="bi bi-search"></i> Buscar</button>
+                      <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                      </button>
+                      <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" >Ordenar de mayor a menor</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" >Ordenar de meno a mayor</a></li>
+                      </ul>
+                    </div>                  
+                  </div>
+                </div>
+
+
+
+
 
 
 

@@ -6,10 +6,10 @@
       <div class="collapse navbar-collapse justify-content-center text-white" id="navbarNav">
         <ul class="nav navbar-nav pull-xs-center">
           <li class="nav-item mx-5 ">
-            <a id="dd" [routerLink]="['/usuario/dash-board', idEmpresa]" class="nav-link text-white" href="/inicio">Volver <i class="bi bi-arrow-left-short"></i></a>
+            <a id="dd" [routerLink]="['/usuario/dash-board', idEmpresa]" class="nav-link text-white" href="/inicio">Volver a sucursales <i class="bi bi-arrow-left-short"></i></a>
           </li>
 
-          <div class="dropdown" style="position: relative; z-index: 3" *ngIf="_usuarioService.obtenerIdentidad()">
+          <div class="dropdown nav-item mx-5" style="position: relative; z-index: 3" *ngIf="_usuarioService.obtenerIdentidad()">
             <button  style="color: whitesmoke;" class="btn dropdown-toggle dd2" type="button" id="dropdownMenuButton1"
               data-bs-toggle="dropdown" aria-expanded="false">
               {{ _usuarioService.obtenerIdentidad().nombre }} <i class="bi bi-person-badge"></i>
@@ -80,13 +80,22 @@
                         </div>
                       </div>
                       <br>
-                      <div class="col-md-6 mb-4">
-                        <div class="form-outline">
-                          <label class="form-label" for="form3Example1n">Usuario:</label>
+
+                      <div class="form-outline mb-4 col-md-6 mb-4">
+                        <label class="form-label" for="form2Example17">Usuario</label>
+  
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span style="background-color: rgb(236, 241, 247)"class="input-group-text" id="basic-addon1" class="form-control form-control-lg">@</span>
+                          </div>
                           <input  type="text" class="form-control form-control-lg" id="inputUsuario" name="usuario" #usuario="ngModel"
-                          [(ngModel)]="empresaModelId.usuario" required>
+                          [(ngModel)]="empresaModelId.usuario" required>                 
                         </div>
+  
+  
                       </div>
+
+
                     </div>
                     <br>
                     <div class="form-outline mb-4">
